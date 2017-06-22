@@ -11,7 +11,6 @@ table {
 ul {
   list-style-type: none;
   padding: 10px;
-  cursor: pointer;
 }
 
 ul img {
@@ -19,16 +18,19 @@ ul img {
   width: 24px;
   margin-right: 10px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 li {
   text-align: left;
   padding: 10px 0;
   padding-left: 0;
+  color: #d6d6d6;
+  cursor: pointer;
 }
 
 li:hover {
-  color: lightblue;
+  color: #fff;
 }
 
 table, td, th {
@@ -45,7 +47,7 @@ th, td {
   padding: 15px;
 }
 
-a {
+span {
   cursor: pointer;
 }
 
@@ -95,7 +97,6 @@ a {
   flex-grow: 1;
   align-self: stretch;
   background-color: #282C34;
-  color: white;
 
   display: flex;
   justify-content: space-around;
@@ -125,10 +126,6 @@ input {
   width: 100%;
 }
 
-.sidebar ul {
-
-}
-
 .button {
   background-color: #4CAF50;
   border: none;
@@ -151,16 +148,17 @@ input {
     border: 2px solid #e7e7e7;
 }
 
-.button:hover {background-color: #e7e7e7;}
+.button:hover {
+  background-color: #e7e7e7;
+}
 
 .change-row {
   color: grey;
-  /*visibility: hidden;*/
 }
 
 .delete:hover,
 .edit:hover {
-  color: lightblue;
+  color: #000;
 }
 
 

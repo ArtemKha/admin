@@ -1,0 +1,21 @@
+
+/* start leave state */
+.slide-leave {
+  opacity: 1;
+}
+
+/* end leave state */
+.slide-leave.slide-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+/* initial mounting */
+.slide-appear {
+  opacity: 0;
+}
+
+.slide-appear.slide-appear-active{
+ opacity: 1;
+ transition: opacity 0.5s ease-in;
+}

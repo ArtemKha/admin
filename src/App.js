@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import Sidebar from './Components/Sidebar';
 import Table from './Components/Table';
 import ModuleEdit from './Components/ModuleEdit';
@@ -21,7 +21,7 @@ class App extends Component {
       edit: {},
       new: {},
       searchInput: '',
-      visibilityChange: 'visible'
+      visibilityChange: { visibility: 'visible'}
     };
 
     this.handleInputEdit = this.handleInputEdit.bind(this);
@@ -58,9 +58,22 @@ class App extends Component {
 
   showInitialState() {
     this.setState({
-      visibilityChange: 'visible',
+      visibilityChange: { visibility: 'visible'},
       cars: this.state.initialState
     });
+  }
+
+  handleInputEdit(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      edit: {
+        ...this.state.edit,
+        [name]: value
+      }
+    });
+    console.log(this.state.edit);
   }
 
   updateTableEdit(e){
@@ -68,7 +81,9 @@ class App extends Component {
     let state = this.state;
     let updatedCar = state.edit;
     let editIndex = state.editIndex;
-    let newCarsState = state.cars;
+    let newCarsState = [...this.state.cars];
+    console.log(editIndex);
+    console.log(updatedCar);
 
     newCarsState.splice(editIndex, 1, updatedCar);
 
@@ -106,27 +121,15 @@ class App extends Component {
     });
 
     this.setState({
-      visibilityChange: 'hidden',
+      visibilityChange: { visibility: 'hidden'},
       initialState: cars,
       search: false,
       searchInput: '',
       cars: filteredCars
     });
-
-    console.log('state', this.state.visibilityChange);
   }
 
-  handleInputEdit(e) {
-    const name = e.target.name;
-    const value = e.target.value;
 
-    this.setState({
-      edit: {
-        ...this.state.edit,
-        [name]: value
-      }
-    });
-  }
 
   handleInputNew(e) {
     const name = e.target.name;
@@ -149,7 +152,7 @@ class App extends Component {
   }
 
   deleteRow(index) {
-    let newCarsState = this.state.cars;
+    let newCarsState = [...this.state.cars];
     newCarsState.splice(index, 1);
 
     this.setState({
@@ -170,15 +173,16 @@ class App extends Component {
         </div>
         <div className="table">
           <ModuleEdit
-            module={this.state.module}
-            edit={this.state.edit}
+            state={this.state}
             updateRow={(e) => this.updateTableEdit(e)}
-            handleInputChange={this.handleInputEdit} />
+            handleInputEdit={this.handleInputEdit}
+          />
           <ModuleNew
             moduleNew={this.state.moduleNew}
             new={this.state.new}
             updateTableNew={(e) => this.updateTableNew(e)}
-            handleInputChange={this.handleInputNew} />
+            handleInputChange={this.handleInputNew}
+          />
           <Search
             search={this.state.search}
             searchInput={this.state.searchInput}
@@ -189,7 +193,8 @@ class App extends Component {
             state={this.state}
             editRow={index => this.showEditModule(index)}
             visibilityChange={this.state.visibilityChange}
-            deleteRow={index => this.deleteRow(index)} />
+            deleteRow={index => this.deleteRow(index)}
+          />
         </div>
       </div>
     );
