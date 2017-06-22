@@ -1,0 +1,227 @@
+/* Styele elements*/
+* {
+  box-sizing: border-box;
+}
+
+table {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+ul img {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+li {
+  text-align: left;
+  padding: 10px 0;
+  padding-left: 0;
+}
+
+li:hover {
+  color: lightblue;
+}
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+a {
+  cursor: pointer;
+}
+
+/* App style */
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/* Container */
+
+.App {
+  width: 90%;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* Style Components */
+
+.table {
+  flex-grow: 3;
+  /*align-self: center;*/
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex-grow: 1;
+  align-self: stretch;
+  background-color: #282C34;
+  color: white;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.module {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 10px;
+  border-color:  lightgrey;
+  border-style: solid;
+  border-width: 1px;
+
+}
+
+/* Component elements*/
+
+input {
+  order: 1px solid #ddd;
+  text-align: left;
+  padding: 15px;
+  width: 33.333%;
+  background-color: #F7F7F7;
+}
+
+#search {
+  width: 100%;
+}
+
+.sidebar ul {
+
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+}
+
+.button:hover {background-color: #e7e7e7;}
+
+.change-row {
+  color: grey;
+}
+
+.delete:hover,
+.edit:hover {
+  color: lightblue;
+}
+
+
+/* Module */
+
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+}
+
+
+/* Media Queries */
+
+@media (min-width: 640px) {
+
+  .sidebar {
+    height: 100vh;
+  }
+
+  .modal-content {
+    max-width: 80%;
+  }
+
+  .change-row {
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  .delete {
+    margin-left: 10px;
+  }
+
+  ul {
+    padding-top: 30%;
+  }
+
+}
+@media (min-width: 800px) {
+
+  .modal-content {
+    max-width: 50%;
+  }
+
+  .change-row {
+    right: 8%;
+  }
+
+}
