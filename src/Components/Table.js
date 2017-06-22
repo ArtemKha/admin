@@ -4,12 +4,6 @@ import Row from './Row';
  const Table = props => {
   let results = props.state.cars;
 
-  // if (showSearchResult) {
-  //   cars = props.state.searchCars;
-  // } else {
-  //   cars = props.state.cars;
-  // }
-
   let cars = results.map( (car, index) =>
     <Row
       manufacturer={car.manufacturer}
@@ -18,6 +12,7 @@ import Row from './Row';
       key={index}
       index={index}
       editRow={props.editRow}
+      visibilityChange={props.visibilityChange}
       deleteRow={props.deleteRow} />
   );
 
@@ -28,8 +23,6 @@ import Row from './Row';
           <th>Manufacturer</th>
           <th>Model</th>
           <th>Price</th>
-          {/* <th>Edit</th>
-          <th>Delete</th> */}
         </tr>
       </thead>
       <tbody>

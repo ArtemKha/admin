@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './Components/Sidebar';
 import Table from './Components/Table';
-import Module from './Components/Module';
+import ModuleEdit from './Components/ModuleEdit';
 import ModuleNew from './Components/ModuleNew';
 import Search from './Components/Search';
 import CARS from './Cars';
@@ -20,7 +20,8 @@ class App extends Component {
       editIndex: '',
       edit: {},
       new: {},
-      searchInput: ''
+      searchInput: '',
+      visibilityChange: 'visible'
     };
 
     this.handleInputEdit = this.handleInputEdit.bind(this);
@@ -55,11 +56,12 @@ class App extends Component {
 
   showInitialState() {
     this.setState({
+      visibilityChange: 'visible',
       cars: this.state.initialState
     });
   }
 
-  updateTable(e){
+  updateTableEdit(e){
     e.preventDefault();
     let state = this.state;
     let updatedCar = state.edit;
@@ -88,7 +90,7 @@ class App extends Component {
     });
   }
 
-  makeSearch(e){
+  updateTableSearch(e){
     e.preventDefault();
     let input = this.state.searchInput;
     let cars = this.state.cars;
@@ -102,11 +104,14 @@ class App extends Component {
     });
 
     this.setState({
+      visibilityChange: 'hidden',
       initialState: cars,
       search: false,
       searchInput: '',
       cars: filteredCars
     });
+
+    console.log('state', this.state.visibilityChange);
   }
 
   handleInputEdit(e) {
@@ -151,8 +156,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log([...this.state.cars]);
-
     return (
       <div className="App">
         <div className="sidebar">
@@ -164,10 +167,10 @@ class App extends Component {
           />
         </div>
         <div className="table">
-          <Module
+          <ModuleEdit
             module={this.state.module}
             edit={this.state.edit}
-            updateRow={(e) => this.updateTable(e)}
+            updateRow={(e) => this.updateTableEdit(e)}
             handleInputChange={this.handleInputEdit} />
           <ModuleNew
             moduleNew={this.state.moduleNew}
@@ -177,12 +180,13 @@ class App extends Component {
           <Search
             search={this.state.search}
             searchInput={this.state.searchInput}
-            makeSearch={(e) => this.makeSearch(e)}
+            makeSearch={(e) => this.updateTableSearch(e)}
             handleInputChange={this.handleInputSearch}
           />
           <Table
             state={this.state}
             editRow={index => this.showEditModule(index)}
+            visibilityChange={this.state.visibilityChange}
             deleteRow={index => this.deleteRow(index)} />
         </div>
       </div>

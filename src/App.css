@@ -155,6 +155,7 @@ input {
 
 .change-row {
   color: grey;
+  /*visibility: hidden;*/
 }
 
 .delete:hover,
