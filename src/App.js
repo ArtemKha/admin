@@ -44,6 +44,8 @@ class App extends Component {
     this.setState({
       search: true,
     });
+
+    this.showInitialState();
   }
 
   showEditModule(index) {
