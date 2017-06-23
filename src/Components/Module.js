@@ -1,19 +1,12 @@
 import React from 'react';
 
 const Module = ({state, updateTable, handleInput}) => {
-  let car, button;
-  const isEdit = (state.module === 'edit');
-  const isNew = (state.module === 'new');
 
-  if (isEdit || isNew){
+  if (state.module){
+    const car = state[state.module];
+    let button;
 
-    if (isEdit) {
-      car = state.edit;
-      button = 'Обновить';
-    } else {
-      car = state.new;
-      button = 'Добавить';
-    }
+    state.module === 'edit' ? button = 'Обновить' : button = 'Добавить';
 
     return(
       <div className="modal">

@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       cars: CARS.data,
       initialState: CARS.data,
-      module: 'none',
+      module: '',
       editIndex: '',
       edit: {},
       new: {},
@@ -74,7 +74,7 @@ class App extends Component {
 
     this.setState({
       cars: newCarsState,
-      module: 'none'
+      module: ''
     });
   }
 
@@ -93,7 +93,7 @@ class App extends Component {
     this.setState({
       visibilityChange: { visibility: 'hidden'},
       initialState: cars,
-      module: 'none',
+      module: '',
       search: {
         searchInput: ''
       },
