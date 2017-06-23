@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './css/App.css';
 import Sidebar from './Components/Sidebar';
 import Table from './Components/Table';
-import ModuleEdit from './Components/ModuleEdit';
-import ModuleNew from './Components/ModuleNew';
+import Module from './Components/Module';
 import Search from './Components/Search';
 import CARS from './Cars';
 
@@ -14,24 +13,20 @@ class App extends Component {
     this.state = {
       cars: CARS.data,
       initialState: CARS.data,
-      module: false,
-      moduleNew: false,
-      search: false,
+      module: 'none',
       editIndex: '',
       edit: {},
       new: {},
-      searchInput: '',
+      search: {},
       visibilityChange: { visibility: 'visible'}
     };
 
-    this.handleInputEdit = this.handleInputEdit.bind(this);
-    this.handleInputNew = this.handleInputNew.bind(this);
-    this.handleInputSearch = this.handleInputSearch.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   showNewModule() {
     this.setState({
-      moduleNew: true,
+      module: 'new',
       new: {
       manufacturer: "Reno",
       model: "Fluence",
@@ -40,19 +35,19 @@ class App extends Component {
     });
   }
 
-  showSearch() {
-    this.setState({
-      search: true,
-    });
-
-    this.showInitialState();
-  }
-
   showEditModule(index) {
     this.setState({
-      module: true,
+      module: 'edit',
       editIndex: index,
       edit: this.state.cars[index]
+    });
+  }
+
+  showSearch() {
+    this.setState({
+      module: 'search',
+      visibilityChange: { visibility: 'visible'},
+      cars: this.state.initialState
     });
   }
 
@@ -63,59 +58,34 @@ class App extends Component {
     });
   }
 
-  handleInputEdit(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState({
-      edit: {
-        ...this.state.edit,
-        [name]: value
-      }
-    });
-    console.log(this.state.edit);
-  }
-
-  updateTableEdit(e){
+  updateTable(e){
     e.preventDefault();
-    let state = this.state;
-    let updatedCar = state.edit;
-    let editIndex = state.editIndex;
-    let newCarsState = [...this.state.cars];
-    console.log(editIndex);
-    console.log(updatedCar);
+    const state = this.state;
+    const newCarsState = [...state.cars];
 
-    newCarsState.splice(editIndex, 1, updatedCar);
+    if (state.module === 'edit') {
+      const updatedCar = state.edit;
+      const editIndex = state.editIndex;
+      newCarsState.splice(editIndex, 1, updatedCar);
+    } else {
+      const newCar = state.new;
+      newCarsState.push(newCar);
+    }
 
     this.setState({
       cars: newCarsState,
-      module: false
-    });
-  }
-
-  updateTableNew(e){
-    e.preventDefault();
-    let state = this.state;
-    let newCar = state.new;
-    let newCarsState = state.cars;
-
-    newCarsState.push(newCar);
-
-    this.setState({
-      cars: newCarsState,
-      moduleNew: false
+      module: 'none'
     });
   }
 
   updateTableSearch(e){
     e.preventDefault();
-    let input = this.state.searchInput;
-    let cars = this.state.cars;
-
+    let input = this.state.search.searchInput.toUpperCase();
+    const cars = this.state.cars;
+    console.log(input);
     const filteredCars = cars.filter( car => {
-      input = input.toUpperCase();
-      let model = car.model.toUpperCase();
-      let manufacturer = car.manufacturer.toUpperCase();
+      const model = car.model.toUpperCase();
+      const manufacturer = car.manufacturer.toUpperCase();
 
       return manufacturer.startsWith(input) || model.startsWith(input);
     });
@@ -123,31 +93,24 @@ class App extends Component {
     this.setState({
       visibilityChange: { visibility: 'hidden'},
       initialState: cars,
-      search: false,
-      searchInput: '',
+      module: 'none',
+      search: {
+        searchInput: ''
+      },
       cars: filteredCars
     });
   }
 
-
-
-  handleInputNew(e) {
+  handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    const module = this.state.module;
 
     this.setState({
-      new: {
-        ...this.state.new,
+      [module]: {
+        ...this.state[module],
         [name]: value
       }
-    });
-  }
-
-  handleInputSearch(e) {
-    const value = e.target.value;
-
-    this.setState({
-      searchInput: value
     });
   }
 
@@ -156,7 +119,8 @@ class App extends Component {
     newCarsState.splice(index, 1);
 
     this.setState({
-      cars: newCarsState
+      cars: newCarsState,
+      initialState: newCarsState
     });
   }
 
@@ -167,33 +131,25 @@ class App extends Component {
           <Sidebar
             showNewModule={() => this.showNewModule()}
             showSearch={() => this.showSearch()}
-            deleteRow={() => this.deleteRow()}
             showInitialState={() => this.showInitialState()}
           />
         </div>
         <div className="table">
-          <ModuleEdit
+          <Module
             state={this.state}
-            updateRow={(e) => this.updateTableEdit(e)}
-            handleInputEdit={this.handleInputEdit}
-          />
-          <ModuleNew
-            moduleNew={this.state.moduleNew}
-            new={this.state.new}
-            updateTableNew={(e) => this.updateTableNew(e)}
-            handleInputChange={this.handleInputNew}
+            updateTable={(e) => this.updateTable(e)}
+            handleInput={this.handleInput}
           />
           <Search
-            search={this.state.search}
-            searchInput={this.state.searchInput}
-            makeSearch={(e) => this.updateTableSearch(e)}
-            handleInputChange={this.handleInputSearch}
+            state={this.state}
+            updateTable={(e) => this.updateTableSearch(e)}
+            handleInput={this.handleInput}
           />
           <Table
             state={this.state}
             editRow={index => this.showEditModule(index)}
-            visibilityChange={this.state.visibilityChange}
             deleteRow={index => this.deleteRow(index)}
+            visibilityChange={this.state.visibilityChange}
           />
         </div>
       </div>

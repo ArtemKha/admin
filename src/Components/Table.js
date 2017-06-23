@@ -25,11 +25,15 @@ import Row from './Row';
           <th>Price</th>
         </tr>
       </thead>
-        <tbody>
-            {cars}
-        </tbody>
+      <tbody>
+        {cars}
+      </tbody>
     </table>
   );
+}
+
+Table.propTypes = {
+
 };
 
 export default Table;

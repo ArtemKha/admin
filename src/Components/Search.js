@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Search = props => {
+const Search = ({state, updateTable, handleInput}) => {
 
-  if (props.search){
+  if (state.module === 'search'){
     return(
       <div className="modal">
         <div className="modal-content">
-          <form onSubmit= {(event) => props.makeSearch(event)}>
-            <input type="text" defaultValue={props.searchInput}
-              id="search" onChange={props.handleInputChange}/>
+          <form onSubmit= {(event) => updateTable(event)}>
+            <input type="text" defaultValue={state.searchInput}
+              id="search" name="searchInput" onChange={handleInput}/>
             <button type="submit" value="submit" className="button">Поиск</button>
           </form>
         </div>

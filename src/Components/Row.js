@@ -11,6 +11,7 @@ import './../css/Transition.css';
       transitionName="slide"
       transitionLeaveTimeout={500}
       transitionAppear={true}
+      transitionEnter={false}
       transitionAppearTimeout={500}>
 
       <td>{props.manufacturer}</td>
@@ -30,6 +31,6 @@ import './../css/Transition.css';
 
     </ReactCSSTransitionGroup>
   );
-};
+}
 
 export default Row;
