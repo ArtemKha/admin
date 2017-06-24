@@ -1,23 +1,33 @@
 import React from 'react';
 
-const Module = ({state, updateTable, handleInput}) => {
+const Module = ({module, car, updateTable}) => {
 
-  if (state.module){
-    const car = state[state.module];
+  if (module){
     let button;
 
-    state.module === 'edit' ? button = 'Обновить' : button = 'Добавить';
+    module === 'edit' ? button = 'Обновить' : button = 'Добавить';
 
     return(
       <div className="modal">
         <div className="modal-content">
-          <form onSubmit= {(event) => updateTable(event)}>
-            <input type="text" defaultValue={car.manufacturer}
-              name="manufacturer" onChange={handleInput}/>
-            <input type="text" defaultValue={car.model}
-              name="model" onChange={handleInput}/>
-            <input type="text" defaultValue={car.price}
-              name="price" onChange={handleInput}/>
+          <form
+            onSubmit= {(e, car) => updateTable(e, car)}
+            >
+            <input type="text"
+              name="manufacturer"
+              defaultValue={car.manufacturer}
+              // onChange={handleInput}
+            />
+            <input type="text"
+              name="model"
+              defaultValue={car.model}
+              // onChange={handleInput}
+            />
+            <input type="text"
+              name="price"
+              defaultValue={car.price}
+              // onChange={handleInput}
+            />
             <button type="submit" value="submit" className="button">{button}</button>
           </form>
         </div>

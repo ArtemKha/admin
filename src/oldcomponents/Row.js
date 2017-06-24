@@ -2,9 +2,10 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import '../css/Transition.css';
 
- const Row = ({car, showEditModule, removeRow, index}) => {
+ const Row = props => {
 
   return (
+
     <ReactCSSTransitionGroup
       component="tr"
       transitionName="slide"
@@ -13,18 +14,16 @@ import '../css/Transition.css';
       transitionEnter={false}
       transitionAppearTimeout={500}>
 
-      <td>{car.manufacturer}</td>
-      <td>{car.model}</td>
-      <td>{car.price}
-        <div className="change-row">
+      <td>{props.manufacturer}</td>
+      <td>{props.model}</td>
+      <td>{props.price}
+        <div className="change-row" style={props.visibilityChange}>
           <span className="edit"
-            onClick={showEditModule}
-            >
+            onClick={() => props.editRow(props.index)}>
             &#9998;
           </span>
           <span className="delete"
-            onClick={() => removeRow(index)}
-            >
+            onClick={() => props.deleteRow(props.index)}>
             &#10005;
           </span>
         </div>

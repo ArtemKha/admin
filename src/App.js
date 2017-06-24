@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import Sidebar from './Components/Sidebar';
-import Table from './Components/Table';
-import Module from './Components/Module';
-import Search from './Components/Search';
 import CARS from './Cars';
+
+import Sidebar from './oldcomponents/Sidebar';
+import Table from './oldcomponents/Table';
+import Module from './oldcomponents/Module';
+import Search from './oldcomponents/Search';
 
 class App extends Component {
 
@@ -82,7 +83,6 @@ class App extends Component {
     e.preventDefault();
     let input = this.state.search.searchInput.toUpperCase();
     const cars = this.state.cars;
-    console.log(input);
     const filteredCars = cars.filter( car => {
       const model = car.model.toUpperCase();
       const manufacturer = car.manufacturer.toUpperCase();
