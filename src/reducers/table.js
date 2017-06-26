@@ -5,7 +5,7 @@ const initialState = [
   ...CARS.data
 ];
 
-export default function Table (state=initialState, action) {
+export default function Table (state = initialState, action) {
   switch(action.type) {
     case TableActionTypes.ADD_ROW:
       return [
@@ -21,12 +21,18 @@ export default function Table (state=initialState, action) {
 
     case TableActionTypes.EDIT_ROW:
       return [
-        state.map((car, index) => {
+        ...state.map((car, index) => {
           if (index === action.index){
-            return action.car;
+            return {
+              ...car,
+              manufacturer: action.car.manufacturer,
+              model: action.car.model,
+              price: action.car.price
+            };
           }
         return car;
-      })];
+        })
+      ];
 
     default:
       return state;

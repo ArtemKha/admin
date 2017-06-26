@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Module from './Module';
 import PropTypes from 'prop-types';
+import Module from './Module';
+import Search from './Search';
 
 import search from '../img/search.svg';
 import layers from '../img/layers.svg';
@@ -28,7 +29,25 @@ export default class Sidebar extends Component {
     });
   }
 
-  _onSubmit = (e, car) => {
+  showSearch = () => {
+    this.setState({
+      module: 'search',
+    });
+  }
+
+  handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      car: {
+        ...this.state.car,
+        [name]: value
+      }
+    });
+  }
+
+  updateTableNew = (e, car) => {
     e.preventDefault();
     this.props.addRow(this.state.car);
 
@@ -40,10 +59,19 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div>
-        <Module module={this.state.module} car={this.state.car} updateTable={(e, car) => this._onSubmit(e, car)}/>
+        <Module
+          state={this.state}
+          updateTable={(e, car) => this.updateTableNew(e, car)}
+          handleInput={e => this.handleInput(e)}
+        />
+        <Search
+          state={this.state}
+          updateTable={(e) => this.updateTableSearch(e)}
+          handleInput={this.handleInput}
+        />
         <ul>
           <li
-          // onClick='{}'
+          onClick={this.showSearch}
           ><img src={search} alt="showSearch"/>ПОИСК</li>
           <li
           // onClick='{}'

@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TableActionTypes from '../actions/table';
-
-import '../css/App.css';
-import Sidebar from '../components/Sidebar';
-import Table from '../components/Table';
+import Panel from '../components/Panel';
 
 class App extends Component {
-
   static propTypes = {
     cars: PropTypes.array.isRequired
   };
@@ -21,14 +17,12 @@ class App extends Component {
     const updateRow = bindActionCreators(TableActionTypes.updateRow, dispatch);
 
     return (
-      <div className="App">
-        <div className="sidebar">
-          <Sidebar addRow={addRow}/>
-        </div>
-        <div className="table">
-          <Table cars={cars} removeRow={removeRow} updateRow={updateRow}/>
-        </div>
-      </div>
+    <Panel
+      cars={cars}
+      addRow={addRow}
+      removeRow={removeRow}
+      updateRow={updateRow}
+    />
     );
   }
 };

@@ -12,7 +12,6 @@ export default class Sidebar extends Component {
   };
 
   state = {
-    cars: this.props.cars,
     index: -1,
     module: '',
     car: {}
@@ -30,8 +29,30 @@ export default class Sidebar extends Component {
     });
   }
 
+  handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(this.state);
+
+    this.setState({
+      car: {
+        ...this.state.car,
+        [name]: value
+      }
+    });
+  }
+
+  onSubmit = (e, car) => {
+    e.preventDefault();
+    this.props.updateRow(this.state.index, this.state.car);
+
+    this.setState({
+      module: ''
+    });
+  }
+
   render() {
-    const cars = this.state.cars.map((car, index) =>
+    const cars = this.props.cars.map((car, index) =>
       <Row
         car={car}
         showEditModule={() => this.showEditModule(index, car)}
@@ -43,7 +64,7 @@ export default class Sidebar extends Component {
 
     return (
       <div>
-        <Module module={this.state.module} car={this.state.car}/>
+        <Module state={this.state} updateTable={(e, car) => this.onSubmit(e, car)} handleInput={e => this.handleInput(e)}/>
         <table>
           <thead>
             <tr>

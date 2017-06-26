@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Module = ({module, car, updateTable}) => {
+const Module = ({state, updateTable, handleInput}) => {
+  const car = state.car;
+  const isEditing = (state.module === "edit");
+  const isAdding = (state.module === "new");
 
-  if (module){
+  if (isEditing || isAdding){
     let button;
 
-    module === 'edit' ? button = 'Обновить' : button = 'Добавить';
+    isEditing ? button = 'Обновить' : button = 'Добавить';
 
     return(
       <div className="modal">
@@ -16,17 +19,17 @@ const Module = ({module, car, updateTable}) => {
             <input type="text"
               name="manufacturer"
               defaultValue={car.manufacturer}
-              // onChange={handleInput}
+              onChange={handleInput}
             />
             <input type="text"
               name="model"
               defaultValue={car.model}
-              // onChange={handleInput}
+              onChange={handleInput}
             />
             <input type="text"
               name="price"
               defaultValue={car.price}
-              // onChange={handleInput}
+              onChange={handleInput}
             />
             <button type="submit" value="submit" className="button">{button}</button>
           </form>
