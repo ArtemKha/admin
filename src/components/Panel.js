@@ -5,11 +5,14 @@ import Table from '../components/Table';
 import '../css/App.css';
 
 export default class Panel extends Component {
+
   static propTypes = {
     cars: PropTypes.array.isRequired,
     addRow: PropTypes.func.isRequired,
     removeRow: PropTypes.func.isRequired,
-    updateRow: PropTypes.func.isRequired
+    updateRow: PropTypes.func.isRequired,
+    selectRow: PropTypes.func.isRequired,
+    showAll: PropTypes.func.isRequired
   };
 
   render() {
@@ -18,7 +21,7 @@ export default class Panel extends Component {
     return (
       <div className="App">
         <div className="sidebar">
-          <Sidebar addRow={props.addRow}/>
+          <Sidebar addRow={props.addRow} selectRow={props.selectRow} showAll={props.showAll}/>
         </div>
         <div className="table">
           <Table cars={props.cars} removeRow={props.removeRow} updateRow={props.updateRow}/>

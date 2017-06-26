@@ -10,7 +10,9 @@ import add from '../img/add.svg';
 export default class Sidebar extends Component {
 
   static propTypes = {
-    addRow: PropTypes.func.isRequired
+    addRow: PropTypes.func.isRequired,
+    selectRow: PropTypes.func.isRequired,
+    showAll: PropTypes.func.isRequired
   };
 
   state = {
@@ -32,6 +34,9 @@ export default class Sidebar extends Component {
   showSearch = () => {
     this.setState({
       module: 'search',
+      car: {
+      search: ''
+      }
     });
   }
 
@@ -45,6 +50,7 @@ export default class Sidebar extends Component {
         [name]: value
       }
     });
+    console.log(this.state);
   }
 
   updateTableNew = (e, car) => {
@@ -52,29 +58,44 @@ export default class Sidebar extends Component {
     this.props.addRow(this.state.car);
 
     this.setState({
-      module: ''
+      module: '',
+      car: {}
+    });
+  }
+
+  updateTableSearch(e){
+    e.preventDefault();
+    const input = this.state.car.search;
+    this.props.selectRow(input);
+    console.log(input);
+
+    this.setState({
+      module: '',
+      car: {}
     });
   }
 
   render() {
     return (
       <div>
-        <Module
-          state={this.state}
-          updateTable={(e, car) => this.updateTableNew(e, car)}
-          handleInput={e => this.handleInput(e)}
-        />
-        <Search
-          state={this.state}
-          updateTable={(e) => this.updateTableSearch(e)}
-          handleInput={this.handleInput}
-        />
+        <div>
+          <Module
+            state={this.state}
+            updateTable={(e, car) => this.updateTableNew(e, car)}
+            handleInput={e => this.handleInput(e)}
+          />
+          <Search
+            state={this.state}
+            updateTable={(e) => this.updateTableSearch(e)}
+            handleInput={this.handleInput}
+          />
+        </div>
         <ul>
           <li
           onClick={this.showSearch}
           ><img src={search} alt="showSearch"/>ПОИСК</li>
           <li
-          // onClick='{}'
+          onClick={this.props.showAll}
           ><img src={layers} alt="showInitialState"/>ПРОСМОТР</li>
           <li
             onClick={this.showNewModule}

@@ -21,3 +21,16 @@ export const updateRow = (index, car)  => {
     car
   };
 };
+
+export const selectRow = filter => {
+  return {
+    type: TableActionTypes.SELECT_ROW,
+    filter
+  };
+
+};
+export const showAll = () => {
+  return {
+    type: TableActionTypes.SHOW_ALL
+  };
+};

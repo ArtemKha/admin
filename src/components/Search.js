@@ -8,7 +8,7 @@ const Search = ({state, updateTable, handleInput}) => {
         <div className="modal-content">
           <form onSubmit= {(event) => updateTable(event)}>
             <input type="text" defaultValue={state.searchInput}
-              id="search" name="searchInput" onChange={handleInput}/>
+              id="search" name="search" onChange={handleInput}/>
             <button type="submit" value="submit" className="button">Поиск</button>
           </form>
         </div>
