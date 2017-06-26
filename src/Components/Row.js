@@ -2,7 +2,7 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import '../css/Transition.css';
 
- const Row = ({car, showEditModule, removeRow, index}) => {
+ const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
 
   return (
     <ReactCSSTransitionGroup
@@ -16,7 +16,7 @@ import '../css/Transition.css';
       <td>{car.manufacturer}</td>
       <td>{car.model}</td>
       <td>{car.price}
-        <div className="change-row">
+        <div className="change-row" style={editingVisibility}>
           <span className="edit"
             onClick={showEditModule}
             >

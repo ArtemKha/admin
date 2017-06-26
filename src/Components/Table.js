@@ -32,7 +32,6 @@ export default class Sidebar extends Component {
   handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(this.state);
 
     this.setState({
       car: {
@@ -52,19 +51,25 @@ export default class Sidebar extends Component {
   }
 
   render() {
+
+    console.log('editingVisibility', this.props.editingVisibility);
     const cars = this.props.cars.map((car, index) =>
       <Row
         car={car}
         showEditModule={() => this.showEditModule(index, car)}
         removeRow={this.props.removeRow}
         index={index}
+        editingVisibility={this.props.editingVisibility}
         key={index}
       />
     );
 
     return (
       <div>
-        <Module state={this.state} updateTable={(e, car) => this.onSubmit(e, car)} handleInput={e => this.handleInput(e)}/>
+        <Module
+          state={this.state}
+          updateTable={(e, car) => this.onSubmit(e, car)}
+          handleInput={e => this.handleInput(e)}/>
         <table>
           <thead>
             <tr>

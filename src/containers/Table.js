@@ -9,7 +9,8 @@ const mapStateToProps = state => (
       const model = car.model.toUpperCase();
       const manufacturer = car.manufacturer.toUpperCase();
       return manufacturer.includes(state.filter) || model.includes(state.filter);
-    })
+    }),
+    editingVisibility: state.editingVisibility
   }
 );
 
