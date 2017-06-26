@@ -50,7 +50,6 @@ export default class Sidebar extends Component {
         [name]: value
       }
     });
-    console.log(this.state);
   }
 
   updateTableNew = (e, car) => {
@@ -67,7 +66,6 @@ export default class Sidebar extends Component {
     e.preventDefault();
     const input = this.state.car.search;
     this.props.selectRow(input);
-    console.log(input);
 
     this.setState({
       module: '',
@@ -76,8 +74,6 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    // console.log(this.props);
-    console.log(this.props.addRow);
     return (
       <div>
         <div>

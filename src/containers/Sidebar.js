@@ -3,23 +3,10 @@ import { connect } from 'react-redux';
 import * as TableActionTypes from '../actions/table';
 import Sidebar from '../components/Sidebar';
 
-const mapStateToProps = state => (
-  {
-    cars: state.cars.filter( car => {
-      const model = car.model.toUpperCase();
-      const manufacturer = car.manufacturer.toUpperCase();
-      return manufacturer.includes(state.filter) || model.includes(state.filter);
-    }),
-    filter: state.filter
-  }
-);
-
 const mapDispatchToProps = dispatch => ({
-  removeRow: bindActionCreators(TableActionTypes.removeRow, dispatch),
-  updateRow: bindActionCreators(TableActionTypes.updateRow, dispatch),
   addRow: bindActionCreators(TableActionTypes.addRow, dispatch),
   selectRow: bindActionCreators(TableActionTypes.selectRow, dispatch),
   showAll: bindActionCreators(TableActionTypes.showAll, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapDispatchToProps)(Sidebar);
