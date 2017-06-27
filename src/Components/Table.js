@@ -35,6 +35,7 @@ export default class Sidebar extends Component {
   handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    console.log(this.state.car);
 
     this.setState({
       car: {
