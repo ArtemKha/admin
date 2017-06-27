@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Module = ({state, updateTable, handleInput}) => {
   const car = state.car;
@@ -40,5 +41,11 @@ const Module = ({state, updateTable, handleInput}) => {
     return(<div> </div>);
   }
 };
+
+Module.propTypes = {
+  state: PropTypes.object.isRequired,
+  updateTable: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired
+}
 
 export default Module;

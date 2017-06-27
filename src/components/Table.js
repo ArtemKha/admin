@@ -7,11 +7,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import '../css/Transition.css';
 
 export default class Sidebar extends Component {
-
   static propTypes = {
     cars: PropTypes.array.isRequired,
     removeRow: PropTypes.func.isRequired,
-    updateRow: PropTypes.func.isRequired
+    updateRow: PropTypes.func.isRequired,
+    editingVisibility: PropTypes.object.isRequired
   };
 
   state = {

@@ -98,7 +98,7 @@ export default class Sidebar extends Component {
           ><img src={layers} alt="showInitialState"/>ПРОСМОТР</li>
           <li
             onClick={this.showNewModule}
-            ><img src={add} alt="showNewModule"/>ДОБАВИТЬ</li>
+          ><img src={add} alt="showNewModule"/>ДОБАВИТЬ</li>
         </ul>
       </div>
     );

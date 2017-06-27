@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
   return (
@@ -22,5 +23,13 @@ const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
     </tr>
   );
 }
+
+Row.propTypes = {
+  car: PropTypes.object.isRequired,
+  showEditModule: PropTypes.func.isRequired,
+  removeRow: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  editingVisibility: PropTypes.object.isRequired
+};
 
 export default Row;

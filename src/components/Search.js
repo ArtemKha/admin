@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Search = ({state, updateTable, handleInput}) => {
 
@@ -17,6 +18,12 @@ const Search = ({state, updateTable, handleInput}) => {
   } else {
     return(<div></div>);
   }
+}
+
+Search.propTypes = {
+  state: PropTypes.object.isRequired,
+  updateTable: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired
 }
 
 export default Search;
