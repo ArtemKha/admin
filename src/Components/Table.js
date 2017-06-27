@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Row from './Row';
 import Module from './Module';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import '../css/Transition.css';
+
 export default class Sidebar extends Component {
 
   static propTypes = {
@@ -41,7 +44,7 @@ export default class Sidebar extends Component {
     });
   }
 
-  onSubmit = (e, car) => {
+  updateRow = (e, car) => {
     e.preventDefault();
     this.props.updateRow(this.state.index, this.state.car);
 
@@ -51,8 +54,6 @@ export default class Sidebar extends Component {
   }
 
   render() {
-
-    console.log('editingVisibility', this.props.editingVisibility);
     const cars = this.props.cars.map((car, index) =>
       <Row
         car={car}
@@ -60,7 +61,7 @@ export default class Sidebar extends Component {
         removeRow={this.props.removeRow}
         index={index}
         editingVisibility={this.props.editingVisibility}
-        key={index}
+        key={car.key}
       />
     );
 
@@ -68,7 +69,7 @@ export default class Sidebar extends Component {
       <div>
         <Module
           state={this.state}
-          updateTable={(e, car) => this.onSubmit(e, car)}
+          updateTable={(e, car) => this.updateRow(e, car)}
           handleInput={e => this.handleInput(e)}/>
         <table>
           <thead>
@@ -78,9 +79,16 @@ export default class Sidebar extends Component {
               <th>Price</th>
             </tr>
           </thead>
-          <tbody>
+          <ReactCSSTransitionGroup
+            component="tbody"
+            transitionName="fade"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            >
             {cars}
-          </tbody>
+          </ReactCSSTransitionGroup>
         </table>
       </div>
     );

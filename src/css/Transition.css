@@ -1,21 +1,31 @@
 
 /* start leave state */
-.slide-leave {
+.fade-leave {
   opacity: 1;
 }
 
 /* end leave state */
-.slide-leave.slide-leave-active {
+.fade-leave.fade-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
 
 /* initial mounting */
-.slide-appear {
+.fade-appear {
   opacity: 0;
 }
 
-.slide-appear.slide-appear-active{
+.fade-appear.fade-appear-active{
+ opacity: 1;
+ transition: opacity 0.5s ease-in;
+}
+
+/* enter state */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active{
  opacity: 1;
  transition: opacity 0.5s ease-in;
 }

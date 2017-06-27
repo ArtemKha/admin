@@ -26,7 +26,8 @@ export default class Sidebar extends Component {
       car: {
       manufacturer: "Manufacturer",
       model: "Model",
-      price: 99999
+      price: 70500,
+      key: Math.floor(Math.random() * 10000)
       }
     });
   }

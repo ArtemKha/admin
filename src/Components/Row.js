@@ -1,18 +1,8 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../css/Transition.css';
 
- const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
-
+const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
   return (
-    <ReactCSSTransitionGroup
-      component="tr"
-      transitionName="slide"
-      transitionLeaveTimeout={500}
-      transitionAppear={true}
-      transitionEnter={false}
-      transitionAppearTimeout={500}>
-
+    <tr>
       <td>{car.manufacturer}</td>
       <td>{car.model}</td>
       <td>{car.price}
@@ -29,8 +19,7 @@ import '../css/Transition.css';
           </span>
         </div>
       </td>
-
-    </ReactCSSTransitionGroup>
+    </tr>
   );
 }
 
