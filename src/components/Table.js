@@ -35,7 +35,6 @@ export default class Sidebar extends Component {
   handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(this.state.car);
 
     this.setState({
       car: {
@@ -45,13 +44,26 @@ export default class Sidebar extends Component {
     });
   }
 
-  updateRow = (e, car) => {
+  updateRow = e => {
     e.preventDefault();
-    this.props.updateRow(this.state.index, this.state.car);
+    if (this.formValidation()) {
+      this.props.updateRow(this.state.index, this.state.car);
 
-    this.setState({
-      module: ''
-    });
+      this.setState({
+        module: ''
+      });
+    }
+  }
+
+  formValidation = () => {
+    const car = this.state.car;
+    for (let key in car){
+      if (car[key].length < 1) {
+        alert("All fields must be filled out.");
+        return false;
+      }
+    }
+    return true;
   }
 
   render() {
@@ -70,7 +82,7 @@ export default class Sidebar extends Component {
       <div>
         <Module
           state={this.state}
-          updateTable={(e, car) => this.updateRow(e, car)}
+          updateTable={e => this.updateRow(e)}
           handleInput={e => this.handleInput(e)}/>
         <table>
           <thead>

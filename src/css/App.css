@@ -1,54 +1,6 @@
-/* Styele elements*/
+
 * {
   box-sizing: border-box;
-}
-
-table {
-  margin: 0 auto;
-  padding: 10px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 10px;
-}
-
-ul img {
-  height: 24px;
-  width: 24px;
-  margin-right: 10px;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
-li {
-  text-align: left;
-  padding: 10px 0;
-  padding-left: 0;
-  color: #d6d6d6;
-  cursor: pointer;
-}
-
-li:hover {
-  color: #fff;
-}
-
-table, td, th {
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  padding: 15px;
-}
-
-span {
-  cursor: pointer;
 }
 
 /* App style */
@@ -111,14 +63,97 @@ span {
 
 }
 
-/* Component elements*/
+
+/* Sidebar component */
+
+ul img {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+li {
+  text-align: left;
+  padding: 10px 0;
+  padding-left: 0;
+  color: #d6d6d6;
+  cursor: pointer;
+}
+
+li:hover {
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+/* Table component */
+
+table {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+span {
+  cursor: pointer;
+}
+
+tr span {
+  opacity: 0;
+}
+
+tr:hover span {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.change-row {
+  color: grey;
+}
+
+.delete:hover,
+.edit:hover {
+  color: tomato;
+}
+
+
+/* Module and Search components */
 
 input {
   order: 1px solid #ddd;
   text-align: left;
   padding: 15px;
-  width: 33.333%;
+  width: calc(33.333% - 20px);
   background-color: #F7F7F7;
+  border-style: solid;
+  border-color: lightgrey;
+}
+
+input + input {
+  margin-left: 10px;
+}
+
+input:focus {
+  background-color: #fff;
+  outline-color: grey;
 }
 
 #search {
@@ -142,26 +177,16 @@ input {
 }
 
 .button {
-    background-color: white;
-    color: black;
-    border: 2px solid #e7e7e7;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
 }
 
 .button:hover {
   background-color: #e7e7e7;
 }
 
-.change-row {
-  color: grey;
-}
-
-.delete:hover,
-.edit:hover {
-  color: #000;
-}
-
-
-/* Module */
+/* Modal Content/Box */
 
 .modal {
   position: fixed;
@@ -175,7 +200,6 @@ input {
   background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;

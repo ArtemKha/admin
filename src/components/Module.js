@@ -15,22 +15,25 @@ const Module = ({state, updateTable, handleInput}) => {
       <div className="modal">
         <div className="modal-content">
           <form
-            onSubmit= {(e, car) => updateTable(e, car)}
+            onSubmit= {e => updateTable(e)}
             >
             <input type="text"
               name="manufacturer"
               defaultValue={car.manufacturer}
               onChange={handleInput}
+              placeholder="Manufacturer"
             />
             <input type="text"
               name="model"
               defaultValue={car.model}
               onChange={handleInput}
+              placeholder="Model"
             />
             <input type="text"
               name="price"
               defaultValue={car.price}
               onChange={handleInput}
+              placeholder="Price"
             />
             <button type="submit" value="submit" className="button">{button}</button>
           </form>

@@ -41,7 +41,7 @@ export default class Sidebar extends Component {
     });
   }
 
-  handleInput = (e) => {
+  handleInput = e => {
     const name = e.target.name;
     const value = e.target.value;
 
@@ -53,17 +53,19 @@ export default class Sidebar extends Component {
     });
   }
 
-  updateTableNew = (e, car) => {
+  updateTableNew = e => {
     e.preventDefault();
-    this.props.addRow(this.state.car);
+    if (this.formValidation()) {
+      this.props.addRow(this.state.car);
 
-    this.setState({
-      module: '',
-      car: {}
-    });
+      this.setState({
+        module: '',
+        car: {}
+      });
+    }
   }
 
-  updateTableSearch(e){
+  updateTableSearch(e) {
     e.preventDefault();
     const input = this.state.car.search;
     this.props.selectRow(input);
@@ -74,18 +76,29 @@ export default class Sidebar extends Component {
     });
   }
 
+  formValidation = () => {
+    const car = this.state.car;
+    for (let key in car){
+      if (car[key].length < 1) {
+        alert("All fields must be filled out.");
+        return false;
+      }
+    }
+    return true;
+  }
+
   render() {
     return (
       <div>
         <div>
           <Module
             state={this.state}
-            updateTable={(e, car) => this.updateTableNew(e, car)}
+            updateTable={e => this.updateTableNew(e)}
             handleInput={e => this.handleInput(e)}
           />
           <Search
             state={this.state}
-            updateTable={(e) => this.updateTableSearch(e)}
+            updateTable={e => this.updateTableSearch(e)}
             handleInput={this.handleInput}
           />
         </div>
