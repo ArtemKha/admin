@@ -105,13 +105,13 @@ export default class Sidebar extends Component {
         <ul>
           <li
           onClick={this.showSearch}
-          ><img src={search} alt="showSearch"/>ПОИСК</li>
+          ><img src={search} alt="showSearch"/>SEARCH</li>
           <li
           onClick={this.props.showAll}
-          ><img src={layers} alt="showInitialState"/>ПРОСМОТР</li>
+          ><img src={layers} alt="showInitialState"/>SHOW ALL</li>
           <li
             onClick={this.showNewModule}
-          ><img src={add} alt="showNewModule"/>ДОБАВИТЬ</li>
+          ><img src={add} alt="showNewModule"/>ADD NEW</li>
         </ul>
       </div>
     );
