@@ -20,19 +20,16 @@ export default function Table (state = initialState, action) {
       ];
 
     case TableActionTypes.EDIT_ROW:
-      return [
-        ...state.map((car, index) => {
-          if (index === action.index){
-            return {
-              ...car,
-              manufacturer: action.car.manufacturer,
-              model: action.car.model,
-              price: action.car.price
-            };
-          }
-        return car;
-        })
-      ];
+      return state.map((car, index) => {
+          index === action.index
+            ? {
+                ...car,
+                manufacturer: action.car.manufacturer,
+                model: action.car.model,
+                price: action.car.price
+              }
+            : car
+        });
 
     default:
       return state;
