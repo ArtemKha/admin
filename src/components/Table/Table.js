@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Row from './Row';
-import Module from './Module';
+import Module from '../Shared/Module';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../css/Transition.css';
+import '../../css/Transition.css';
 
 export default class Sidebar extends Component {
   static propTypes = {
@@ -25,9 +25,9 @@ export default class Sidebar extends Component {
       module: 'edit',
       index: index,
       car: {
-      manufacturer,
-      model,
-      price
+        manufacturer,
+        model,
+        price
       }
     });
   }

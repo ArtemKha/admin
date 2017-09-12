@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Module from './Module';
+import Module from './Shared/Module';
 import Search from './Search';
 
 import search from '../img/search.svg';
@@ -87,6 +87,7 @@ export default class Sidebar extends Component {
     return true;
   }
 
+  render() {
     return (
       <div>
         <div>

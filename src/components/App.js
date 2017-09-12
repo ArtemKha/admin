@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from '../containers/Table';
 import Sidebar from '../containers/Sidebar';
+import Client from './Client';
 import '../css/App.css';
 
 const App = () => (
@@ -9,7 +10,7 @@ const App = () => (
       <Sidebar />
     </div>
     <div className="table">
-      <Table />
+      <Client />
     </div>
   </div>
 )

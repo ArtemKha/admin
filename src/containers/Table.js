@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TableActionTypes from '../actions/table';
-import Table from '../components/Table';
+import Table from '../components/Table/Table';
 
 const mapStateToProps = state => (
   {
