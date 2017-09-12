@@ -5,7 +5,7 @@ import Table from '../components/Table';
 
 const mapStateToProps = state => (
   {
-    cars: state.cars.filter( car => {
+    cars: state.clients.filter( car => {
       const model = car.model.toUpperCase();
       const manufacturer = car.manufacturer.toUpperCase();
       return manufacturer.includes(state.filter) || model.includes(state.filter);

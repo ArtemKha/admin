@@ -6,7 +6,7 @@ const Row = ({car, showEditModule, removeRow, index, editingVisibility}) => {
     <tr>
       <td>{car.manufacturer}</td>
       <td>{car.model}</td>
-      <td>{car.price}
+      <td>{'$' + car.price}
         <div className="change-row" style={editingVisibility}>
           <span className="edit"
             onClick={showEditModule}

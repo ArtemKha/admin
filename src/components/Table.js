@@ -87,9 +87,9 @@ export default class Sidebar extends Component {
         <table>
           <thead>
             <tr>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Price</th>
+              <th>Name</th>
+              <th>Strategy</th>
+              <th>Investment</th>
             </tr>
           </thead>
           <ReactCSSTransitionGroup

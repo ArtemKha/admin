@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import cars from './cars';
+import clients from './clients';
 import filter from './filter';
 import editingVisibility from './editingVisibility';
 
 const TableReducer = combineReducers({
-  cars,
+  clients,
   filter,
   editingVisibility
 });

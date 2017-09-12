@@ -1,5 +1,5 @@
 import * as TableActionTypes from '../actiontypes/table';
-import CARS from './../Cars';
+import CARS from './../Clients';
 
 const initialState = [
   ...CARS.data
@@ -8,10 +8,7 @@ const initialState = [
 export default function Table (state = initialState, action) {
   switch(action.type) {
     case TableActionTypes.ADD_ROW:
-      return [
-        ...state,
-        action.car
-      ];
+      return state.concat(action.car);
 
     case TableActionTypes.DELETE_ROW:
       return [
@@ -21,14 +18,17 @@ export default function Table (state = initialState, action) {
 
     case TableActionTypes.EDIT_ROW:
       return state.map((car, index) => {
-          index === action.index
-            ? {
-                ...car,
-                manufacturer: action.car.manufacturer,
-                model: action.car.model,
-                price: action.car.price
-              }
-            : car
+          if (index === action.index) {
+            const { manufacturer, model, price } = action.car
+            return {
+              ...car,
+              manufacturer,
+              model,
+              price
+            }
+          } else {
+            return car
+          }
         });
 
     default:
